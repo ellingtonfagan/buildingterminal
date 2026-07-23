@@ -1,0 +1,28 @@
+# Environment / secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Data — never commit the SQLite DB or downloaded source dumps
+*.sqlite
+*.sqlite3
+*.db
+data/
+uploads/
+
+# uv
+uv.lock
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/

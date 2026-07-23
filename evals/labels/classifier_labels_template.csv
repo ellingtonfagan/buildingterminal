@@ -1,0 +1,9 @@
+# Valid gold_job_type values: heating_system_replacement, roof_replacement_or_recoat, facade_repair_ll11, plumbing_riser_replacement, electrical_service_upgrade, general_interior_renovation, other_unclassifiable
+work_description,gold_job_type,predicted_job_type
+"REPLACE EXISTING GAS FIRED BOILER WITH NEW GAS FIRED BOILER IN CELLAR",heating_system_replacement,
+"INSTALL NEW ROOFING MEMBRANE AND FLASHING AT MAIN ROOF",roof_replacement_or_recoat,
+"REPAIR FRONT FACADE, REPOINT BRICK AND REBUILD PARAPET PER LL11/98",facade_repair_ll11,
+"REPLACE WATER RISERS THROUGHOUT BUILDING FROM CELLAR TO ROOF",plumbing_riser_replacement,
+"UPGRADE ELECTRICAL SERVICE FROM 200A TO 400A, NEW SERVICE ENTRANCE",electrical_service_upgrade,
+"GUT RENOVATION OF APARTMENT 4B INCLUDING KITCHEN AND BATH",general_interior_renovation,
+"GENERAL CONSTRUCTION AS PER PLANS",other_unclassifiable,
