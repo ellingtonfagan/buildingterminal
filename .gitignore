@@ -20,7 +20,7 @@ data/
 uploads/
 
 # uv
-uv.lock
+# uv.lock IS committed — needed for reproducible Docker builds (see Dockerfile).
 
 # Editor / OS
 .DS_Store

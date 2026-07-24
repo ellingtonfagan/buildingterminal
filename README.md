@@ -15,6 +15,20 @@ messy quote PDF       →  [LLM]   →  structured quote record
 structured quotes     →  [CODE]  →  recalibrated model
 ```
 
+## Building this: Claude directs, Codex implements
+
+This repo is worked by two agents: Claude plans and reviews (specs live in
+`docs/codex-backlog/`), OpenAI Codex implements them as PRs, CI gates every
+PR (`.github/workflows/ci.yml`). See `AGENTS.md` (Codex's standing
+instructions) and `docs/codex-workflow.md` (the human runbook for connecting
+Codex and running the loop).
+
+## Deployment
+
+Fly.io. See `DEPLOY.md` for the full runbook. Short version: `fly deploy`
+with `ANTHROPIC_API_KEY` set as a secret; SQLite-on-volume today, Postgres
+via `DATABASE_URL` once `docs/codex-backlog/001-postgres-migration.md` lands.
+
 ## Data caveats (read these — they are written into the code as comments too)
 
 1. **Declared cost ≠ actual cost.** Owners underdeclare DOB job costs to reduce

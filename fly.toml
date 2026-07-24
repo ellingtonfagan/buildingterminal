@@ -1,0 +1,40 @@
+# Fly.io app config. CHANGE `app` to a globally-unique name before first
+# `fly launch` / `fly deploy` — see DEPLOY.md for the full runbook.
+app = "cost-engine-v0"
+primary_region = "iad"
+
+[build]
+
+[env]
+  DB_PATH = "/data/cost_engine.sqlite"
+  UPLOAD_DIR = "/data/uploads"
+  PORT = "8080"
+  # LLM_CLASSIFIER_MODEL / LLM_JOBSPEC_MODEL / LLM_QUOTE_MODEL default sensibly
+  # in code (see .env.example) — override here only if you want a different
+  # model in production than the local-dev default.
+
+# Persistent volume for SQLite + uploaded quote PDFs. Once DATABASE_URL
+# (docs/codex-backlog/001-postgres-migration.md) points at a managed Postgres,
+# this volume only needs to hold /data/uploads, not the DB file.
+[[mounts]]
+  source = "cost_engine_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
