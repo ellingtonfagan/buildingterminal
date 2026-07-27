@@ -30,6 +30,22 @@ Nothing is local-only once it's pushed.
    npm install -g @openai/codex
    codex doctor   # confirms the install and tells you what's still missing
    ```
+   **If this fails with `EACCES: permission denied` on macOS** (common with
+   the stock system Node install, where the global `node_modules` directory
+   is root-owned): don't reach for `sudo npm install -g` — it works but
+   leaves root-owned files that cause weirder permission errors later.
+   Instead, point npm's global installs at a directory you own, once,
+   permanently:
+   ```bash
+   mkdir -p ~/.npm-global
+   npm config set prefix ~/.npm-global
+   echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc   # ~/.bashrc if you use bash
+   source ~/.zshrc
+   npm install -g @openai/codex
+   ```
+   Or skip the global install entirely and run it via `npx` (slightly slower
+   per invocation, zero config changes): `npx @openai/codex login`, then
+   `npx @openai/codex` in place of `codex` everywhere below.
 2. Authenticate — `codex doctor` will flag `auth` as missing until you do
    this:
    ```bash
