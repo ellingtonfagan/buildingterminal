@@ -25,11 +25,19 @@ Nothing is local-only once it's pushed.
 
 ## One-time setup
 
-1. Install the Codex CLI and authenticate it (with your OpenAI account or an
-   API key) per OpenAI's current instructions for your platform — run
-   `codex --help` once installed to confirm the exact subcommands on your
-   version, since these change between releases.
-2. Clone this repo locally if you haven't:
+1. Install the Codex CLI (requires Node.js):
+   ```bash
+   npm install -g @openai/codex
+   codex doctor   # confirms the install and tells you what's still missing
+   ```
+2. Authenticate — `codex doctor` will flag `auth` as missing until you do
+   this:
+   ```bash
+   codex login
+   ```
+   (or set a supported API-key env var, if you'd rather not use the browser
+   login — `codex login --help` shows the options on your version).
+3. Clone this repo locally if you haven't:
    ```bash
    git clone <this-repo-url>
    cd buildingterminal
@@ -38,12 +46,12 @@ Nothing is local-only once it's pushed.
    (There's no `main` branch yet — this is currently the trunk. Rename/merge
    it to `main` later if you want to standardize; either works, just be
    consistent about which branch tickets target.)
-3. Confirm the local dev setup works before handing anything to Codex:
+4. Confirm the local dev setup works before handing anything to Codex:
    ```bash
    uv sync --extra dev
    uv run pytest
    ```
-4. Codex CLI reads **`AGENTS.md`** at the repo root automatically, the same
+5. Codex CLI reads **`AGENTS.md`** at the repo root automatically, the same
    way the cloud version does — nothing else to configure. That file is your
    standing instructions to Codex; edit it (or ask me to) if you want to
    change how it works.
